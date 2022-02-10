@@ -1,0 +1,44 @@
+using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace firstProblemMidleExam
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            List<int> n = Console.ReadLine().Split().Select(int.Parse).ToList();
+
+            while (true)
+            {
+                string[] operations = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
+                if (operations[0].Contains("end"))
+                {
+                    break;
+                }
+                else if (operations[0] == "Delete")
+                {
+                    for (int i = 0; i < n.Count; i++)
+                    {
+                        if (n[i] == int.Parse(operations[1]))
+                        {
+                            n.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+                else if (operations[0] == "Insert")
+                {
+                    n.Insert(int.Parse(operations[2]), int.Parse(operations[1]));
+                }
+
+            }
+
+            Console.WriteLine(String.Join(" ", n));
+        }
+
+    }
+}
